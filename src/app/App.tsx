@@ -28,6 +28,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from './components/ui/select';
+import { Segmented } from './components/ui/segmented';
 import { primitives, semantics, components, typography, radius, shadow, spacing } from '../data/mockTokens';
 // 导入 tokens 文件
 import colorSeedTokensJson from '../data/token/color-seed.tokens.json';
@@ -3428,17 +3429,15 @@ export default function App() {
             />
           </div>
           {/* 代码语言切换器 */}
-          <Select value={codeLanguage} onValueChange={(value: 'css' | 'js') => setCodeLanguage(value)}>
-            <SelectTrigger className="h-9 w-28 text-xs border-slate-200 bg-white">
-              <SelectValue>
-                {codeLanguage === 'css' ? 'CSS' : 'JS'}
-              </SelectValue>
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="css">CSS</SelectItem>
-              <SelectItem value="js">JS</SelectItem>
-            </SelectContent>
-          </Select>
+          <Segmented
+            options={[
+              { label: 'CSS', value: 'css' },
+              { label: 'JS', value: 'js' },
+            ]}
+            value={codeLanguage}
+            onChange={(value: string) => setCodeLanguage(value as 'css' | 'js')}
+            size="default"
+          />
           {/* 导出按钮 */}
           <Button
             variant="outline"
