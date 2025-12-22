@@ -13,6 +13,25 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Check Vercel Secrets
+        run: |
+          if [ -z "${{ secrets.VERCEL_TOKEN }}" ]; then
+            echo "❌ VERCEL_TOKEN is not set. Please configure it in GitHub Secrets."
+            echo "📖 See DEPLOYMENT.md for instructions."
+            exit 1
+          fi
+          if [ -z "${{ secrets.VERCEL_ORG_ID }}" ]; then
+            echo "❌ VERCEL_ORG_ID is not set. Please configure it in GitHub Secrets."
+            echo "📖 See DEPLOYMENT.md for instructions."
+            exit 1
+          fi
+          if [ -z "${{ secrets.VERCEL_PROJECT_ID }}" ]; then
+            echo "❌ VERCEL_PROJECT_ID is not set. Please configure it in GitHub Secrets."
+            echo "📖 See DEPLOYMENT.md for instructions."
+            exit 1
+          fi
+          echo "✅ All Vercel secrets are configured"
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -33,6 +52,7 @@ jobs:
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        continue-on-error: true
 
       - name: Build Project Artifacts
         run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}

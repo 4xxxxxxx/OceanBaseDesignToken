@@ -80,10 +80,38 @@
 
 ## 故障排查
 
-如果部署失败，请检查：
+### 如果 GitHub Actions 部署失败
 
-1. GitHub Secrets 是否正确配置
-2. Vercel Token 是否有效
-3. VercEL_ORG_ID 和 VERCEL_PROJECT_ID 是否正确
-4. 查看 GitHub Actions 日志获取详细错误信息
+**常见原因和解决方案：**
+
+1. **GitHub Secrets 未配置**
+   - 错误信息：`VERCEL_TOKEN is not set` 或类似
+   - 解决方案：按照上面的步骤 3 配置 GitHub Secrets
+
+2. **Vercel Token 无效或过期**
+   - 解决方案：重新创建 Token 并更新 GitHub Secret
+
+3. **Vercel 项目不存在**
+   - 解决方案：先在 Vercel Dashboard 中创建项目
+
+4. **权限问题**
+   - 解决方案：确保 Vercel Token 有部署权限
+
+### 🔧 快速解决方案
+
+**如果 GitHub Actions 配置复杂，推荐使用 Vercel GitHub Integration：**
+
+1. 访问 [Vercel Dashboard](https://vercel.com/dashboard)
+2. 点击 "Add New..." > "Project"
+3. 选择 GitHub 仓库：`4xxxxxxx/OceanBaseDesignToken`
+4. Vercel 会自动连接 GitHub，之后每次推送都会自动部署
+5. **无需配置任何 GitHub Secrets！**
+
+这种方式更简单、更可靠，是 Vercel 官方推荐的方式。
+
+### 查看详细错误信息
+
+1. 访问 GitHub 仓库的 **Actions** 标签页
+2. 点击失败的 workflow 运行
+3. 查看每个步骤的日志，找到具体的错误信息
 
