@@ -232,7 +232,8 @@ const parseTypographyTokens = (fontJson: any): any => {
     family: {},
     weight: {},
     size: {},
-    'line-height': {}
+    'line-height': {},
+    style: {}
   };
   
   if (!fontJson) {
@@ -311,6 +312,34 @@ const parseTypographyTokens = (fontJson: any): any => {
     }
   }
   
+  // 解析 style（字体样式组合）
+  if (fontJson.style) {
+    for (const key in fontJson.style) {
+      const token = fontJson.style[key];
+      if (token && token.$type === 'typography' && token.$value) {
+        const variable = `font-${key}`;
+        const codeSyntax = token.$extensions?.['com.figma.codeSyntax']?.WEB || `--ob-${variable}`;
+        const description = token.$extensions?.description || '';
+        
+        // 构建组合值字符串
+        const styleValue = token.$value;
+        const valueParts: string[] = [];
+        if (styleValue.fontFamily) valueParts.push(`font-family: ${styleValue.fontFamily}`);
+        if (styleValue.fontWeight) valueParts.push(`font-weight: ${styleValue.fontWeight}`);
+        if (styleValue.fontSize) valueParts.push(`font-size: ${styleValue.fontSize}`);
+        if (styleValue.lineHeight) valueParts.push(`line-height: ${styleValue.lineHeight}`);
+        
+        result.style[variable] = {
+          value: valueParts.join('; '),
+          type: 'typography',
+          codeSyntax: codeSyntax,
+          description: description,
+          styleValue: styleValue // 保存原始样式对象用于导出
+        };
+      }
+    }
+  }
+  
   return result;
 };
 
@@ -381,7 +410,7 @@ const parseSemanticTokens = (semanticJson: any, colorSeedCodeSyntaxMap: Record<s
 };
 
 // Helper to flatten tokens for table display
-const flattenTokens = (data: any, prefix = '', groupName?: string): { name: string; value: string; codeSyntax?: string; path: string[]; colorHex?: string; colorAlpha?: number }[] => {
+const flattenTokens = (data: any, prefix = '', groupName?: string): { name: string; value: string; codeSyntax?: string; path: string[]; colorHex?: string; colorAlpha?: number; description?: string }[] => {
   let result: any[] = [];
   for (const key in data) {
     if (typeof data[key] === 'object' && data[key] !== null) {
@@ -414,7 +443,8 @@ const flattenTokens = (data: any, prefix = '', groupName?: string): { name: stri
           codeSyntax: codeSyntax,
           path: prefix ? [...prefix.split('.'), key] : [key],
           colorHex: data[key]._colorHex,
-          colorAlpha: data[key]._colorAlpha
+          colorAlpha: data[key]._colorAlpha,
+          description: data[key].description
         });
       } else {
         // It's a group
@@ -1159,11 +1189,11 @@ const TokenGroup = ({
                       {tokens ? (
                         <TypographyTokenTooltip 
                           tokens={tokens} 
-                          codeSyntax="--ob-font-weight-l" 
+                          codeSyntax="--ob-font-weight-lg" 
                           codeLanguage={codeLanguage}
                           onTypographyCodeSyntaxClick={onTypographyCodeSyntaxClick}
                         >
-                          <CodeSyntaxCell codeSyntax="--ob-font-weight-l" codeLanguage={codeLanguage} />
+                          <CodeSyntaxCell codeSyntax="--ob-font-weight-lg" codeLanguage={codeLanguage} />
                         </TypographyTokenTooltip>
                       ) : (
                         <span 
@@ -1171,7 +1201,7 @@ const TokenGroup = ({
                           onClick={() => onTypographyCodeSyntaxClick?.('--ob-font-weight-l')}
                           title="点击定位到对应的表格数据行"
                         >
-                          <CodeSyntaxCell codeSyntax="--ob-font-weight-l" codeLanguage={codeLanguage} />
+                          <CodeSyntaxCell codeSyntax="--ob-font-weight-lg" codeLanguage={codeLanguage} />
                         </span>
                       )}
                     </TableCell>
@@ -1255,11 +1285,11 @@ const TokenGroup = ({
                       {tokens ? (
                         <TypographyTokenTooltip 
                           tokens={tokens} 
-                          codeSyntax="--ob-font-weight-l" 
+                          codeSyntax="--ob-font-weight-lg" 
                           codeLanguage={codeLanguage}
                           onTypographyCodeSyntaxClick={onTypographyCodeSyntaxClick}
                         >
-                          <CodeSyntaxCell codeSyntax="--ob-font-weight-l" codeLanguage={codeLanguage} />
+                          <CodeSyntaxCell codeSyntax="--ob-font-weight-lg" codeLanguage={codeLanguage} />
                         </TypographyTokenTooltip>
                       ) : (
                         <span 
@@ -1267,7 +1297,7 @@ const TokenGroup = ({
                           onClick={() => onTypographyCodeSyntaxClick?.('--ob-font-weight-l')}
                           title="点击定位到对应的表格数据行"
                         >
-                          <CodeSyntaxCell codeSyntax="--ob-font-weight-l" codeLanguage={codeLanguage} />
+                          <CodeSyntaxCell codeSyntax="--ob-font-weight-lg" codeLanguage={codeLanguage} />
                         </span>
                       )}
                     </TableCell>
@@ -1351,11 +1381,11 @@ const TokenGroup = ({
                       {tokens ? (
                         <TypographyTokenTooltip 
                           tokens={tokens} 
-                          codeSyntax="--ob-font-weight-l" 
+                          codeSyntax="--ob-font-weight-lg" 
                           codeLanguage={codeLanguage}
                           onTypographyCodeSyntaxClick={onTypographyCodeSyntaxClick}
                         >
-                          <CodeSyntaxCell codeSyntax="--ob-font-weight-l" codeLanguage={codeLanguage} />
+                          <CodeSyntaxCell codeSyntax="--ob-font-weight-lg" codeLanguage={codeLanguage} />
                         </TypographyTokenTooltip>
                       ) : (
                         <span 
@@ -1363,7 +1393,7 @@ const TokenGroup = ({
                           onClick={() => onTypographyCodeSyntaxClick?.('--ob-font-weight-l')}
                           title="点击定位到对应的表格数据行"
                         >
-                          <CodeSyntaxCell codeSyntax="--ob-font-weight-l" codeLanguage={codeLanguage} />
+                          <CodeSyntaxCell codeSyntax="--ob-font-weight-lg" codeLanguage={codeLanguage} />
                         </span>
                       )}
                     </TableCell>
@@ -1447,11 +1477,11 @@ const TokenGroup = ({
                       {tokens ? (
                         <TypographyTokenTooltip 
                           tokens={tokens} 
-                          codeSyntax="--ob-font-weight-l" 
+                          codeSyntax="--ob-font-weight-lg" 
                           codeLanguage={codeLanguage}
                           onTypographyCodeSyntaxClick={onTypographyCodeSyntaxClick}
                         >
-                          <CodeSyntaxCell codeSyntax="--ob-font-weight-l" codeLanguage={codeLanguage} />
+                          <CodeSyntaxCell codeSyntax="--ob-font-weight-lg" codeLanguage={codeLanguage} />
                         </TypographyTokenTooltip>
                       ) : (
                         <span 
@@ -1459,7 +1489,7 @@ const TokenGroup = ({
                           onClick={() => onTypographyCodeSyntaxClick?.('--ob-font-weight-l')}
                           title="点击定位到对应的表格数据行"
                         >
-                          <CodeSyntaxCell codeSyntax="--ob-font-weight-l" codeLanguage={codeLanguage} />
+                          <CodeSyntaxCell codeSyntax="--ob-font-weight-lg" codeLanguage={codeLanguage} />
                         </span>
                       )}
                     </TableCell>
@@ -1543,11 +1573,11 @@ const TokenGroup = ({
                       {tokens ? (
                         <TypographyTokenTooltip 
                           tokens={tokens} 
-                          codeSyntax="--ob-font-weight-m" 
+                          codeSyntax="--ob-font-weight-md" 
                           codeLanguage={codeLanguage}
                           onTypographyCodeSyntaxClick={onTypographyCodeSyntaxClick}
                         >
-                          <CodeSyntaxCell codeSyntax="--ob-font-weight-m" codeLanguage={codeLanguage} />
+                          <CodeSyntaxCell codeSyntax="--ob-font-weight-md" codeLanguage={codeLanguage} />
                         </TypographyTokenTooltip>
                       ) : (
                         <span 
@@ -1555,7 +1585,7 @@ const TokenGroup = ({
                           onClick={() => onTypographyCodeSyntaxClick?.('--ob-font-weight-m')}
                           title="点击定位到对应的表格数据行"
                         >
-                          <CodeSyntaxCell codeSyntax="--ob-font-weight-m" codeLanguage={codeLanguage} />
+                          <CodeSyntaxCell codeSyntax="--ob-font-weight-md" codeLanguage={codeLanguage} />
                         </span>
                       )}
                     </TableCell>
@@ -1630,7 +1660,7 @@ const TokenGroup = ({
                         onClick={() => onTypographyCodeSyntaxClick?.('--ob-font-weight-s')}
                         title="点击定位到对应的表格数据行"
                       >
-                        <CodeSyntaxCell codeSyntax="--ob-font-weight-s" codeLanguage={codeLanguage} />
+                        <CodeSyntaxCell codeSyntax="--ob-font-weight-sm" codeLanguage={codeLanguage} />
                       </span>
                     </TableCell>
                     <TableCell className="font-mono text-[11px] text-blue-600 select-all py-3">
@@ -1691,11 +1721,11 @@ const TokenGroup = ({
                       {tokens ? (
                         <TypographyTokenTooltip 
                           tokens={tokens} 
-                          codeSyntax="--ob-font-weight-s" 
+                          codeSyntax="--ob-font-weight-sm" 
                           codeLanguage={codeLanguage}
                           onTypographyCodeSyntaxClick={onTypographyCodeSyntaxClick}
                         >
-                          <CodeSyntaxCell codeSyntax="--ob-font-weight-s" codeLanguage={codeLanguage} />
+                          <CodeSyntaxCell codeSyntax="--ob-font-weight-sm" codeLanguage={codeLanguage} />
                         </TypographyTokenTooltip>
                       ) : (
                         <span 
@@ -1703,7 +1733,7 @@ const TokenGroup = ({
                           onClick={() => onTypographyCodeSyntaxClick?.('--ob-font-weight-s')}
                           title="点击定位到对应的表格数据行"
                         >
-                          <CodeSyntaxCell codeSyntax="--ob-font-weight-s" codeLanguage={codeLanguage} />
+                          <CodeSyntaxCell codeSyntax="--ob-font-weight-sm" codeLanguage={codeLanguage} />
                         </span>
                       )}
                     </TableCell>
@@ -1766,7 +1796,8 @@ const TokenGroup = ({
                 'family': '字体',
                 'weight': '字重',
                 'size': '字号',
-                'line-height': '行高'
+                'line-height': '行高',
+                'style': '字体样式'
               };
               
               if (categoryItemsList.length === 0) return null;
@@ -1868,7 +1899,8 @@ const TokenGroup = ({
                 'family': '字体',
                 'weight': '字重',
                 'size': '字号',
-                'line-height': '行高'
+                'line-height': '行高',
+                'style': '字体样式'
               };
               
               if (categoryItemsList.length === 0) return null;
@@ -1901,7 +1933,14 @@ const TokenGroup = ({
                     className={`group transition-colors ${isHighlighted ? 'bg-blue-100 border-l-4 border-l-blue-500' : ''}`}
                   >
                             <TableCell className="pl-6 font-medium font-mono text-[11px] text-purple-600 py-3">
-                      <VariableCell variableName={variableName} />
+                      <div className="flex flex-col gap-0.5">
+                        <VariableCell variableName={variableName} />
+                        {category === 'style' && (token as any).description && (
+                          <span className="text-[10px] text-slate-500 font-sans normal-case">
+                            {(token as any).description}
+                          </span>
+                        )}
+                      </div>
                     </TableCell>
                             <TableCell className="font-mono text-[11px] text-blue-600 select-all py-3">
                               <CodeSyntaxCell codeSyntax={codeSyntax} codeLanguage={codeLanguage} />
@@ -2487,7 +2526,8 @@ export default function App() {
       family: {},
       weight: {},
       size: {},
-      'line-height': {}
+      'line-height': {},
+      style: {}
     };
     
     // 处理 family
@@ -2591,6 +2631,38 @@ export default function App() {
           }
           
           result['line-height'][tokenKey] = tokenData;
+        }
+      }
+    }
+    
+    // 处理 style（字体样式组合）
+    if (data.style) {
+      for (const key in data.style) {
+        const token = data.style[key];
+        if (token && token.styleValue) {
+          // 从 font-h1 提取 h1
+          const tokenKey = key.replace('font-', '');
+          const tokenData: any = {
+            $type: 'typography',
+            $value: token.styleValue
+          };
+          
+          // 如果有 codeSyntax，根据 codeLanguage 转换
+          if (token.codeSyntax) {
+            const codeSyntaxValue = codeLanguage === 'js' ? convertToJS(token.codeSyntax) : token.codeSyntax;
+            tokenData.$extensions = {
+              'com.figma.codeSyntax': {
+                WEB: codeSyntaxValue
+              }
+            };
+            
+            // 如果有描述，添加到扩展中
+            if (token.description) {
+              tokenData.$extensions.description = token.description;
+            }
+          }
+          
+          result.style[tokenKey] = tokenData;
         }
       }
     }
@@ -2703,6 +2775,24 @@ export default function App() {
           if (token && token.value) {
             const cssVar = token.codeSyntax || `--ob-${key}`;
             css += `  ${cssVar}: ${token.value};\n`;
+          }
+        }
+      }
+      
+      if (tokens.typography.style) {
+        css += `  /* 字体样式 (Typography Styles) */\n`;
+        for (const key in tokens.typography.style) {
+          const token = tokens.typography.style[key];
+          if (token && token.styleValue) {
+            const cssVar = token.codeSyntax || `--ob-${key}`;
+            const styleValue = token.styleValue;
+            // 生成完整的 font 简写属性
+            const fontFamily = styleValue.fontFamily || 'inherit';
+            const fontSize = styleValue.fontSize || 'inherit';
+            const lineHeight = styleValue.lineHeight || 'inherit';
+            const fontWeight = styleValue.fontWeight || 'inherit';
+            // CSS font 简写: font: font-style font-weight font-size/line-height font-family
+            css += `  ${cssVar}: ${fontWeight} ${fontSize}/${lineHeight} ${fontFamily};\n`;
           }
         }
       }
@@ -2915,6 +3005,30 @@ export default function App() {
             if (token.codeSyntax) {
               const codeSyntaxValue = codeLanguage === 'js' ? convertToJS(token.codeSyntax) : token.codeSyntax;
               globalStyles.tokens.typography['line-height'][tokenKey].$extensions = {
+                'com.figma.codeSyntax': {
+                  WEB: codeSyntaxValue
+                }
+              };
+            }
+          }
+        }
+      }
+      
+      if (tokens.typography.style) {
+        globalStyles.tokens.typography.style = {};
+        for (const key in tokens.typography.style) {
+          const token = tokens.typography.style[key];
+          if (token && token.styleValue) {
+            const tokenKey = key.replace('font-', '');
+            globalStyles.tokens.typography.style[tokenKey] = {
+              $type: 'typography',
+              $value: token.styleValue,
+              description: token.description || `字体样式: ${tokenKey}`
+            };
+            
+            if (token.codeSyntax) {
+              const codeSyntaxValue = codeLanguage === 'js' ? convertToJS(token.codeSyntax) : token.codeSyntax;
+              globalStyles.tokens.typography.style[tokenKey].$extensions = {
                 'com.figma.codeSyntax': {
                   WEB: codeSyntaxValue
                 }
