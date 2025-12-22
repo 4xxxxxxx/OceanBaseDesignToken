@@ -48,7 +48,7 @@ const Segmented = React.forwardRef<HTMLDivElement, SegmentedProps>(
         role="tablist"
         {...props}
       >
-        {options.map((option, index) => {
+        {options.map((option) => {
           const isSelected = currentValue === option.value;
           return (
             <button

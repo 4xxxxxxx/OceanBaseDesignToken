@@ -3436,7 +3436,6 @@ export default function App() {
             ]}
             value={codeLanguage}
             onChange={(value: string) => setCodeLanguage(value as 'css' | 'js')}
-            size="default"
           />
           {/* 导出按钮 */}
           <Button
