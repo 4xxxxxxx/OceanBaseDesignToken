@@ -2,7 +2,25 @@
 
 项目已配置 GitHub Actions，当代码推送到 `main` 分支时会自动部署到 Vercel。
 
-## 配置步骤
+## 🚀 快速开始（推荐方式）
+
+**最简单的方式：使用 Vercel 的 GitHub Integration**
+
+1. 访问 [Vercel Dashboard](https://vercel.com/dashboard)
+2. 点击 "Add New..." > "Project"
+3. 选择你的 GitHub 仓库：`4xxxxxxx/OceanBaseDesignToken`
+4. Vercel 会自动检测项目配置（已配置 `vercel.json`）
+5. 点击 "Deploy"
+
+完成！之后每次推送到 `main` 分支，Vercel 会自动部署。
+
+---
+
+## 📋 使用 GitHub Actions 部署（高级方式）
+
+如果你想使用 GitHub Actions 进行更精细的控制，请按照以下步骤配置：
+
+### 配置步骤
 
 ### 1. 获取 Vercel 凭证
 
