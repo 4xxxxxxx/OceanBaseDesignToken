@@ -912,6 +912,34 @@
         }
       }
     },
+    "success": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.08627451211214066,
+          0.7215686440467834,
+          0.5098039507865906
+        ],
+        "alpha": 1,
+        "hex": "#16B882"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:2906:3093",
+        "com.figma.scopes": [
+          "TEXT_FILL"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "--ob-color-text-success"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:b76b05dd7188effb6ad85f28ad45d063f276f461/-1:-1",
+          "targetVariableName": "green-4",
+          "targetVariableSetId": "VariableCollectionId:159ae90567e508411f5ec3c26af982dc95ce1f9e/-1:-1",
+          "targetVariableSetName": ".color-seed"
+        }
+      }
+    },
     "error": {
       "$type": "color",
       "$value": {

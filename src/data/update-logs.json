@@ -1,5 +1,11 @@
 [
   {
+    "date": "2025-12-26",
+    "content": [
+      "- 新增文字Token： color-text-success=green-4"
+    ]
+  },
+  {
     "date": "2025-12-22",
     "content": [
       "- 大写字母调整为小写字母",
