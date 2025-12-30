@@ -357,11 +357,11 @@
       "colorSpace": "srgb",
       "components": [
         0.7019608020782471,
-        0.800000011920929,
+        0.8274509906768799,
         1
       ],
       "alpha": 1,
-      "hex": "#B3CCFF"
+      "hex": "#B3D3FF"
     },
     "$extensions": {
       "com.figma.variableId": "VariableID:11:1516",
@@ -924,6 +924,6 @@
     }
   },
   "$extensions": {
-    "com.figma.modeName": "Value"
+    "com.figma.modeName": "color-seed"
   }
 }

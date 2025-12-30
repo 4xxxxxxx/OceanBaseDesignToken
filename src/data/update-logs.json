@@ -1,5 +1,11 @@
 [
   {
+    "date": "2025-12-30",
+    "content": [
+      "- 修改颜色基础Token： blue-2=#B3D3FF"
+    ]
+  },
+  {
     "date": "2025-12-26",
     "content": [
       "- 新增文字Token： color-text-success=green-4"
