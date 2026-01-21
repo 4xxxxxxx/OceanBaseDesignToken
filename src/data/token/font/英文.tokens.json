@@ -4,14 +4,30 @@
       "$type": "string",
       "$value": "Inter",
       "$extensions": {
-        "com.figma.type": "string",
         "com.figma.variableId": "VariableID:2071:3",
         "com.figma.scopes": [
           "ALL_SCOPES"
         ],
         "com.figma.codeSyntax": {
           "WEB": "--ob-font-family-default"
-        }
+        },
+        "com.figma.type": "string",
+        "com.figma.isOverride": true
+      }
+    },
+    "code": {
+      "$type": "string",
+      "$value": "Monaco",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3118:5",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "--ob-font-family-default"
+        },
+        "com.figma.type": "string",
+        "com.figma.isOverride": true
       }
     }
   },
@@ -20,42 +36,45 @@
       "$type": "string",
       "$value": "Regular",
       "$extensions": {
-        "com.figma.type": "string",
         "com.figma.variableId": "VariableID:2071:4",
         "com.figma.scopes": [
           "ALL_SCOPES"
         ],
         "com.figma.codeSyntax": {
           "WEB": "--ob-font-weight-sm"
-        }
+        },
+        "com.figma.type": "string",
+        "com.figma.isOverride": true
       }
     },
     "md": {
       "$type": "string",
       "$value": "Medium",
       "$extensions": {
-        "com.figma.type": "string",
         "com.figma.variableId": "VariableID:2071:8",
         "com.figma.scopes": [
           "ALL_SCOPES"
         ],
         "com.figma.codeSyntax": {
           "WEB": "--ob-font-weight-md"
-        }
+        },
+        "com.figma.type": "string",
+        "com.figma.isOverride": true
       }
     },
     "lg": {
       "$type": "string",
       "$value": "Semi Bold",
       "$extensions": {
-        "com.figma.type": "string",
         "com.figma.variableId": "VariableID:2071:12",
         "com.figma.scopes": [
           "ALL_SCOPES"
         ],
         "com.figma.codeSyntax": {
           "WEB": "--ob-font-weight-lg"
-        }
+        },
+        "com.figma.type": "string",
+        "com.figma.isOverride": true
       }
     }
   },
@@ -70,7 +89,8 @@
         ],
         "com.figma.codeSyntax": {
           "WEB": "--ob-font-size-300"
-        }
+        },
+        "com.figma.isOverride": true
       }
     },
     "325": {
@@ -83,7 +103,8 @@
         ],
         "com.figma.codeSyntax": {
           "WEB": "--ob-font-size-325"
-        }
+        },
+        "com.figma.isOverride": true
       }
     },
     "400": {
@@ -96,7 +117,8 @@
         ],
         "com.figma.codeSyntax": {
           "WEB": "--ob-font-size-400"
-        }
+        },
+        "com.figma.isOverride": true
       }
     },
     "450": {
@@ -109,7 +131,8 @@
         ],
         "com.figma.codeSyntax": {
           "WEB": "--ob-font-size-450"
-        }
+        },
+        "com.figma.isOverride": true
       }
     },
     "500": {
@@ -122,7 +145,8 @@
         ],
         "com.figma.codeSyntax": {
           "WEB": "--ob-font-size-500"
-        }
+        },
+        "com.figma.isOverride": true
       }
     }
   },
@@ -137,7 +161,8 @@
         ],
         "com.figma.codeSyntax": {
           "WEB": "--ob-font-line-height-500"
-        }
+        },
+        "com.figma.isOverride": true
       }
     },
     "600": {
@@ -150,7 +175,8 @@
         ],
         "com.figma.codeSyntax": {
           "WEB": "--ob-font-line-height-600"
-        }
+        },
+        "com.figma.isOverride": true
       }
     },
     "650": {
@@ -163,7 +189,8 @@
         ],
         "com.figma.codeSyntax": {
           "WEB": "--ob-font-line-height-650"
-        }
+        },
+        "com.figma.isOverride": true
       }
     },
     "700": {
@@ -176,114 +203,25 @@
         ],
         "com.figma.codeSyntax": {
           "WEB": "--ob-font-line-height-700"
-        }
+        },
+        "com.figma.isOverride": true
       }
     }
   },
   "style": {
-    "h1": {
+    "body-code": {
       "$type": "typography",
       "$value": {
-        "fontFamily": "var(--ob-font-family-default)",
-        "fontWeight": "var(--ob-font-weight-lg)",
-        "fontSize": "var(--ob-font-size-500)",
-        "lineHeight": "var(--ob-font-line-height-700)"
+        "fontFamily": "--ob-font-family-code",
+        "fontWeight": "--ob-font-weight-md",
+        "fontSize": "--ob-font-size-325",
+        "lineHeight": "--ob-font-line-height-500"
       },
       "$extensions": {
         "com.figma.codeSyntax": {
-          "WEB": "--ob-font-h1"
+          "WEB": "--ob-font-body-code"
         },
-        "description": "页容器一级标题"
-      }
-    },
-    "h2": {
-      "$type": "typography",
-      "$value": {
-        "fontFamily": "var(--ob-font-family-default)",
-        "fontWeight": "var(--ob-font-weight-lg)",
-        "fontSize": "var(--ob-font-size-450)",
-        "lineHeight": "var(--ob-font-line-height-650)"
-      },
-      "$extensions": {
-        "com.figma.codeSyntax": {
-          "WEB": "--ob-font-h2"
-        },
-        "description": "页容器二级标题、抽屉弹窗标题"
-      }
-    },
-    "h3": {
-      "$type": "typography",
-      "$value": {
-        "fontFamily": "var(--ob-font-family-default)",
-        "fontWeight": "var(--ob-font-weight-lg)",
-        "fontSize": "var(--ob-font-size-400)",
-        "lineHeight": "var(--ob-font-line-height-600)"
-      },
-      "$extensions": {
-        "com.figma.codeSyntax": {
-          "WEB": "--ob-font-h3"
-        },
-        "description": "卡片标题、表单一级分组标题"
-      }
-    },
-    "h4": {
-      "$type": "typography",
-      "$value": {
-        "fontFamily": "var(--ob-font-family-default)",
-        "fontWeight": "var(--ob-font-weight-lg)",
-        "fontSize": "var(--ob-font-size-325)",
-        "lineHeight": "var(--ob-font-line-height-500)"
-      },
-      "$extensions": {
-        "com.figma.codeSyntax": {
-          "WEB": "--ob-font-h4"
-        },
-        "description": "表单二级分组标题"
-      }
-    },
-    "body1": {
-      "$type": "typography",
-      "$value": {
-        "fontFamily": "var(--ob-font-family-default)",
-        "fontWeight": "var(--ob-font-weight-md)",
-        "fontSize": "var(--ob-font-size-325)",
-        "lineHeight": "var(--ob-font-line-height-500)"
-      },
-      "$extensions": {
-        "com.figma.codeSyntax": {
-          "WEB": "--ob-font-body1"
-        },
-        "description": "常规正文"
-      }
-    },
-    "body2": {
-      "$type": "typography",
-      "$value": {
-        "fontFamily": "var(--ob-font-family-default)",
-        "fontWeight": "var(--ob-font-weight-sm)",
-        "fontSize": "var(--ob-font-size-300)",
-        "lineHeight": "var(--ob-font-line-height-500)"
-      },
-      "$extensions": {
-        "com.figma.codeSyntax": {
-          "WEB": "--ob-font-body2"
-        },
-        "description": "表格文本"
-      }
-    },
-    "caption": {
-      "$type": "typography",
-      "$value": {
-        "fontFamily": "var(--ob-font-family-default)",
-        "fontWeight": "var(--ob-font-weight-sm)",
-        "fontSize": "var(--ob-font-size-300)",
-        "lineHeight": "var(--ob-font-line-height-500)"
-      },
-      "$extensions": {
-        "com.figma.codeSyntax": {
-          "WEB": "--ob-font-caption"
-        },
-        "description": "描述"
+        "description": "代码"
       }
     }
   },

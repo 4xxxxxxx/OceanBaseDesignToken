@@ -1686,6 +1686,102 @@ const TokenGroup = ({
                     );
                   })()}
                   {(() => {
+                    const fontBodyCode = 'font-body-code';
+                    return (
+                      <TableRow className="group">
+                        <TableCell className="pl-6 font-medium font-mono text-[11px] text-purple-600 py-3">
+                          <VariableCell variableName={fontBodyCode} />
+                        </TableCell>
+                        <TableCell className="font-mono text-[11px] text-blue-600 select-all py-3">
+                          <CodeSyntaxCell codeSyntax={`--ob-${fontBodyCode}`} codeLanguage={codeLanguage} />
+                        </TableCell>
+                    <TableCell className="font-mono text-[11px] text-slate-600 py-3">
+                      代码
+                    </TableCell>
+                    <TableCell className="font-mono text-[11px] text-blue-600 select-all py-3">
+                      {tokens ? (
+                        <TypographyTokenTooltip 
+                          tokens={tokens} 
+                          codeSyntax="--ob-font-family-code" 
+                          codeLanguage={codeLanguage}
+                          onTypographyCodeSyntaxClick={onTypographyCodeSyntaxClick}
+                        >
+                          <CodeSyntaxCell codeSyntax="--ob-font-family-code" codeLanguage={codeLanguage} />
+                        </TypographyTokenTooltip>
+                      ) : (
+                        <span 
+                          className="cursor-pointer hover:text-blue-700 hover:underline transition-colors"
+                          onClick={() => onTypographyCodeSyntaxClick?.('--ob-font-family-code')}
+                          title="点击定位到对应的表格数据行"
+                        >
+                          <CodeSyntaxCell codeSyntax="--ob-font-family-code" codeLanguage={codeLanguage} />
+                        </span>
+                      )}
+                    </TableCell>
+                    <TableCell className="font-mono text-[11px] text-blue-600 select-all py-3">
+                      {tokens ? (
+                        <TypographyTokenTooltip 
+                          tokens={tokens} 
+                          codeSyntax="--ob-font-weight-m" 
+                          codeLanguage={codeLanguage}
+                          onTypographyCodeSyntaxClick={onTypographyCodeSyntaxClick}
+                        >
+                          <CodeSyntaxCell codeSyntax="--ob-font-weight-m" codeLanguage={codeLanguage} />
+                        </TypographyTokenTooltip>
+                      ) : (
+                        <span 
+                          className="cursor-pointer hover:text-blue-700 hover:underline transition-colors"
+                          onClick={() => onTypographyCodeSyntaxClick?.('--ob-font-weight-m')}
+                          title="点击定位到对应的表格数据行"
+                        >
+                          <CodeSyntaxCell codeSyntax="--ob-font-weight-m" codeLanguage={codeLanguage} />
+                        </span>
+                      )}
+                    </TableCell>
+                    <TableCell className="font-mono text-[11px] text-blue-600 select-all py-3">
+                      {tokens ? (
+                        <TypographyTokenTooltip 
+                          tokens={tokens} 
+                          codeSyntax="--ob-font-size-325" 
+                          codeLanguage={codeLanguage}
+                          onTypographyCodeSyntaxClick={onTypographyCodeSyntaxClick}
+                        >
+                          <CodeSyntaxCell codeSyntax="--ob-font-size-325" codeLanguage={codeLanguage} />
+                        </TypographyTokenTooltip>
+                      ) : (
+                        <span 
+                          className="cursor-pointer hover:text-blue-700 hover:underline transition-colors"
+                          onClick={() => onTypographyCodeSyntaxClick?.('--ob-font-size-325')}
+                          title="点击定位到对应的表格数据行"
+                        >
+                          <CodeSyntaxCell codeSyntax="--ob-font-size-325" codeLanguage={codeLanguage} />
+                        </span>
+                      )}
+                    </TableCell>
+                    <TableCell className="font-mono text-[11px] text-blue-600 select-all py-3">
+                      {tokens ? (
+                        <TypographyTokenTooltip 
+                          tokens={tokens} 
+                          codeSyntax="--ob-line-height-500" 
+                          codeLanguage={codeLanguage}
+                          onTypographyCodeSyntaxClick={onTypographyCodeSyntaxClick}
+                        >
+                          <CodeSyntaxCell codeSyntax="--ob-line-height-500" codeLanguage={codeLanguage} />
+                        </TypographyTokenTooltip>
+                      ) : (
+                        <span 
+                          className="cursor-pointer hover:text-blue-700 hover:underline transition-colors"
+                          onClick={() => onTypographyCodeSyntaxClick?.('--ob-line-height-500')}
+                          title="点击定位到对应的表格数据行"
+                        >
+                          <CodeSyntaxCell codeSyntax="--ob-line-height-500" codeLanguage={codeLanguage} />
+                        </span>
+                      )}
+                    </TableCell>
+                  </TableRow>
+                    );
+                  })()}
+                  {(() => {
                     const fontCaption = 'font-caption';
                     return (
                       <TableRow className="group">
